@@ -1,0 +1,39 @@
+<head>
+  <%= stylesheet_link_tag "parallel_requests/index"%>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+  <script>
+    var items = <%=@download_item_ids.to_json.html_safe%>;
+
+  </script>
+
+</head>
+
+<div class="table-title">
+  <h3>Device Magic Exercise</h3>
+  <button id = "download" class="btn btn-primary " type="button"><i class="fa fa-play"></i>&nbsp;Start Download</button>
+</div>
+<table class="table-fill"\\>
+  <thead>
+  <tr>
+    <th class="text-left">Key</th>
+    <th class="text-left">Status</th>
+    <th class="text-left">Value</th>
+  </tr>
+  </thead>
+  <tbody>
+
+<% @download_item_ids.each do |item_id| %>
+
+      <tr>
+        <td class="text-left"><%=item_id%></td>
+        <td class="text-left"><span class="status status-not-started">Not Started</span></td>
+        <td class="text-left"></td>
+      </tr>
+
+<% end %>
+  </tbody>
+</table>
+
+<%= javascript_include_tag "parallel_requests/index" , async: Rails.env.production?%>
+
